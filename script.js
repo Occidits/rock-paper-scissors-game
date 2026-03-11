@@ -1,6 +1,3 @@
-//Variable to contain users choice
-let userChoice = prompt("Please, select Rock, Paper or Scissor");
-
 //Variables to track player and computer score
 let humanScore = 0;
 let computerScore = 0;
@@ -24,9 +21,9 @@ function getComputerChoice() {
 }
 
 //Function that returns users choice
-function getHumanChoice() {
+function getHumanChoice(choice) {
   //Variable to contain userChoice formatted to lowerCase
-  let choice = userChoice.toLowerCase();
+  choice.toLowerCase();
 
   //Conditional to return a value based in choice value
   if (choice === "rock") {
@@ -62,9 +59,25 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-//Variables to use as arguments to playRound
-//they contain the result from getHumanChoice and getComputerChoice functions
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
+//Loop will occur 5 times
+//Every round the counter of humanScore or computerScore grow for the winner
+//After 5 rounds, winner is announced
+for (let i = 0; i < 5; i++) {
+  //Variable to contain users choice
+  let userChoice = prompt("Please, select Rock, Paper or Scissor");
 
-playRound(humanSelection, computerSelection);
+  //Variables to use as arguments to playRound
+  //they contain the result from getHumanChoice and getComputerChoice functions
+  let humanSelection = getHumanChoice(userChoice);
+  let computerSelection = getComputerChoice();
+
+  playRound(humanSelection, computerSelection);
+}
+
+if (humanScore > computerScore) {
+  console.log("Human is the winner!!!");
+} else if (humanScore === computerScore) {
+  console.log("It's a draw!!!");
+} else {
+  console.log("Computer is the winner!!!");
+}
